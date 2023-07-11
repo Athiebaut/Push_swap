@@ -6,7 +6,7 @@
 /*   By: athiebau <athiebau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 17:48:35 by athiebau          #+#    #+#             */
-/*   Updated: 2023/07/06 17:43:03 by athiebau         ###   ########.fr       */
+/*   Updated: 2023/07/11 11:36:38 by athiebau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	main(int ac, char **av)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	if (ac < 2)
 		return (-1);
 	else
@@ -110,14 +110,15 @@ int	main(int ac, char **av)
 		av++;
 		if (ac == 2)
 		{
+			if (*av[0] == '\0')
+				return (0);
 			av = ft_split(*av, ' ');
 			ac = ft_strlen2(av);
+			if (ac == 0)
+				return (0);
 			checker(ac, av);
-			while (av[i])
-			{
+			while (av[++i])
 				free(av[i]);
-				i++;
-			}
 			free(av);
 		}
 		else
